@@ -37,7 +37,18 @@ function* getAll(connection) {
 
 function* getNews(connection) {
   const news = yield connection.query(`
-    select * from news_stories order by created_at DESC limit 25
+    select
+      "description",
+      "url",
+      "thumbnailSource",
+      "thumbnailDescription"
+    from
+      news_stories,
+      selected_stories
+    where
+      selected_stories.type = 'news' and selected_stories.id = news_stories.url
+    order by
+      news_stories.created_at DESC limit 25
   `);
 
   return news.map(news => new NewsStory(news));
@@ -46,7 +57,7 @@ function* getNews(connection) {
 function* getLaunches(connection) {
   let launches = yield connection.query(`
     select
-      id,
+      launches.id,
       "infoURLs",
       location,
       pads,
@@ -56,8 +67,14 @@ function* getLaunches(connection) {
       "videoURLs",
       "windowStart",
       "windowEnd"
-    from launches
-    order by "windowStart" DESC limit 25
+    from
+      launches,
+      selected_stories
+    where
+      selected_stories.type = 'launch' and
+      selected_stories.id = cast (launches.id as text)
+    order by
+      "windowStart" DESC limit 25
   `);
 
   return yield mapAsync(launches, function* (launch) {
