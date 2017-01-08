@@ -12,7 +12,7 @@ var _pgPromise2 = _interopRequireDefault(_pgPromise);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const DB_SERVER_URL = exports.DB_SERVER_URL = 'postgres://linuser@localhost/test';
+const DB_SERVER_URL = exports.DB_SERVER_URL = 'postgres://localhost/space_watch';
 const SERVER_PORT = exports.SERVER_PORT = 3000;
 
 let db;

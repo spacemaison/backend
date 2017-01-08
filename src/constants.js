@@ -1,6 +1,6 @@
 import postgres from 'pg-promise'
 
-export const DB_SERVER_URL = 'postgres://linuser@localhost/test'
+export const DB_SERVER_URL = 'postgres://localhost/space_watch'
 export const SERVER_PORT = 3000
 
 let db
