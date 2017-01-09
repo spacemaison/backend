@@ -24,7 +24,9 @@
   "devDependencies": {
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
-    "mocha": "^2.5.3"
+    "gulp-standard": "^8.0.3",
+    "mocha": "^2.5.3",
+    "standard": "^8.6.0"
   },
   "babel": {
     "plugins": [
