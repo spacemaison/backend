@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha --compilers js:babel-register --recursive test",
+    "test": "node_modules/mocha/bin/mocha --require test/setup.js --recursive test",
     "start": "gulp && node out/index.js"
   },
   "author": "Jesse Tuchsen",
@@ -22,7 +22,7 @@
     "pg-promise": "^5.3.1"
   },
   "devDependencies": {
-    "babel-register": "^6.9.0",
+    "babel-register": "^6.18.0",
     "chai": "^3.5.0",
     "gulp-standard": "^8.0.3",
     "mocha": "^2.5.3",

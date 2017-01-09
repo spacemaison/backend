@@ -2,7 +2,7 @@ import 'babel-polyfill'
 
 import express from 'express'
 import co from 'co'
-import * as stories from './routes/stories'
+import * as stories from './routes/stories/index'
 import { getDatabase, SERVER_PORT } from './constants'
 
 let app = express()
