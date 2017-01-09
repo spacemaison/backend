@@ -11,35 +11,52 @@ let app = express()
 // open a new connection to the database for every request.
 
 app.get('/stories', (request, response) => {
+  console.log('\t - Stories request')
+
   co(function * () {
+    let connection
     try {
-      const connection = yield getDatabase().connect()
+      connection = yield getDatabase().connect()
 
       response.json(yield stories.getAll(connection))
     } catch (e) {
       console.error(e.stack)
       response.status(400).end()
     } finally {
-      connection.close()
+      if (connection) {
+        connection.close()
+      }
     }
   })
 })
 
 app.get('/stories/:type', (request, response) => {
+  console.log('\t - Stories request type: ' + request.params.type)
+
   co(function * () {
+    let connection
+
     try {
-      const connection = yield getDatabase().connect()
+      connection = yield getDatabase().connect()
 
       switch (request.params.type) {
-        case 'news': response.json(yield stories.getNews(connection))
-        case 'launches': response.json(yield stories.getLaunches(connection))
-        default: response.status(404).end()
-        }
+        case 'news':
+          response.json(yield stories.getNews(connection))
+          break
+        case 'launches':
+          response.json(yield stories.getLaunches(connection))
+          break
+        default:
+          response.status(404).end()
+          break
+      }
     } catch (e) {
       console.error(e.stack)
       response.status(400).end()
     } finally {
-      connection.close()
+      if (connection) {
+        connection.close()
+      }
     }
   })
 })
