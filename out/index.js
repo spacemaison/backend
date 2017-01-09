@@ -63,3 +63,5 @@ app.get('/stories/:type', (request, response) => {
 });
 
 app.listen(_constants.SERVER_PORT);
+
+console.log('\n\t Space Watch Backend started...');

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha --compilers js:babel-register --recursive test"
+    "test": "node_modules/mocha/bin/mocha --compilers js:babel-register --recursive test",
+    "start": "gulp && node out/index.js"
   },
   "author": "Jesse Tuchsen",
   "license": "MIT",
