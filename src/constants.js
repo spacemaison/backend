@@ -11,3 +11,10 @@ export function getDatabase () {
 
   return db
 }
+
+let connection
+export function getDatabaseConnection () {
+  if (connection) return Promise.resolve(connection)
+
+  return getDatabase().connect().then(_c => { connection = _c; return _c })
+}
