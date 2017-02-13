@@ -1,4 +1,4 @@
-import { models } from 'space-watch-shared'
+import { models } from 'space-maison-shared'
 
 const { Image, NewsStory } = models
 
