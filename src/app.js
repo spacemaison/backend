@@ -44,7 +44,9 @@ export function createApp (createServer = express, logger = console) {
         switch (request.params.type) {
           case 'galleries':
             const idInt = Number.parseInt(id)
-            response.json(yield stories.getGalleries(connection, idInt))
+            const galleries = yield stories.getGalleries(connection, idInt)
+
+            response.json(galleries[0] || {})
             break
 
         }
@@ -77,7 +79,7 @@ export function createApp (createServer = express, logger = console) {
             response.json(yield stories.getFeatured(connection))
             break
           case 'media':
-            response.json({})
+            response.json(yield stories.getMedia(connection))
             break
           case 'galleries':
             response.json(yield stories.getGalleries(connection))

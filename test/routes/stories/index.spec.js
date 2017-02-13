@@ -25,8 +25,11 @@ describe('route handlers for stories', () => {
     }
 
     expect(returned.value).to.deep.equal({
+      featured: [],
+      galleries: [],
       news: [],
-      launches: []
+      launches: [],
+      media: []
     })
   })
 })

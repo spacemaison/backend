@@ -1,20 +1,23 @@
 import { getFeatured } from './featured'
 import { getGalleries } from './galleries'
-import { getNews } from './news'
 import { getLaunches } from './launches'
+import { getMedia } from './media'
+import { getNews } from './news'
 
 export {
   getFeatured,
   getGalleries,
-  getNews,
-  getLaunches
+  getLaunches,
+  getMedia,
+  getNews
 }
 
 export function * getAll (connection) {
   return {
     featured: yield * getFeatured(connection),
     galleries: yield * getGalleries(connection),
-    news: yield * getNews(connection),
-    launches: yield * getLaunches(connection)
+    launches: yield * getLaunches(connection),
+    media: yield * getMedia(connection),
+    news: yield * getNews(connection)
   }
 }
