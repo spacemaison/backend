@@ -11,7 +11,9 @@
   "author": "Jesse Tuchsen",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-transform-es2015-destructuring": "^6.22.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.22.0",
+    "babel-plugin-transform-es2015-parameters": "^6.22.0",
     "babel-polyfill": "^6.13.0",
     "body-parser": "^1.15.2",
     "cheerio": "^0.20.0",
@@ -33,7 +35,9 @@
   },
   "babel": {
     "plugins": [
-      "transform-es2015-modules-commonjs"
+      "transform-es2015-modules-commonjs",
+      "transform-es2015-destructuring",
+      "transform-es2015-parameters"
     ]
   }
 }
