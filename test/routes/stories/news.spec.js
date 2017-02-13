@@ -19,7 +19,12 @@ describe('route handlers for news stories', () => {
 
   it('gets news stories', () => {
     let gen = stories.getNews(connection)
-    let news = [ new models.NewsStory({ url: 'url' }) ]
+    let news = [{
+      __proto__: new models.NewsStory({ url: 'url' }),
+      urls: [],
+      descriptions: [],
+      sizes: []
+    }]
 
     connection.query.returned = news
 
@@ -34,14 +39,15 @@ describe('route handlers for news stories', () => {
     select
       "description",
       "url",
-      "thumbnailSource",
-      "thumbnailDescription"
+      (image).urls,
+      (image).descriptions,
+      (image).sizes
     from
       news_stories,
       selected_stories
     where
       selected_stories.type = 'news' and selected_stories.id = news_stories.url
     order by
-      news_stories.created_at DESC limit 25
+      news_stories.date DESC limit 25
   `
 })
