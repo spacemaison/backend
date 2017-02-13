@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha --require test/setup.js --recursive test",
-    "start": "gulp && node out/index.js"
+    "start": "gulp && node -r babel-polyfill out/index.js"
   },
   "author": "Jesse Tuchsen",
   "license": "MIT",

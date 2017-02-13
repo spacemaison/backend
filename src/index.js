@@ -3,7 +3,6 @@ import { SERVER_PORT } from './constants'
 import * as routes from './routes/index'
 
 if (require.main === module) {
-  require('babel-polyfill')
   createApp().listen(SERVER_PORT)
   console.log('\n\t Space Watch Backend started...')
 }
