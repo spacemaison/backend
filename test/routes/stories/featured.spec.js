@@ -1,6 +1,6 @@
 /* globals describe, it, beforeEach */
 import { expect } from 'chai'
-import { models } from 'space-watch-shared'
+import { models } from 'space-maison-shared'
 import * as featured from '../../../src/routes/stories/featured'
 
 describe('route handlers for news stories', () => {
