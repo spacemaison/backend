@@ -1,7 +1,7 @@
 import express from 'express'
 import co from 'co'
 import * as stories from './routes/stories/index'
-import { getDatabaseConnection } from './constants'
+import { getDatabaseConnection } from './db'
 
 export function createApp (createServer = express, logger = console) {
   let app = createServer()
