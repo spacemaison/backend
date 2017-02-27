@@ -1,4 +1,5 @@
 import postgres from 'pg-promise'
+import co from 'co'
 import {
   DATABASE_OPTIONS,
   IMAGE_TYPE,
@@ -31,13 +32,47 @@ import {
   STORY_TYPE_NAME
 } from './constants'
 
+let pgPromise
 let db
-export function getDatabase () {
+
+function getPostgres () {
+  if (!pgPromise) {
+    pgPromise = postgres()
+  }
+  return pgPromise
+}
+
+function getDatabase () {
   if (!db) {
-    db = postgres()(DATABASE_OPTIONS)
+    db = getPostgres()(DATABASE_OPTIONS)
   }
 
   return db
+}
+
+export function * runDatabaseTask (cb, closeAfter) {
+  return yield * run('task', closeAfter, cb)
+}
+
+export function * runDatabaseTransaction (cb, closeAfter) {
+  return yield * run('tx', closeAfter, cb)
+}
+
+function * run (type, closeAfter, cb) {
+  yield getDatabase().task(db => co(function * () {
+    yield createDatabaseTypes(db)
+    yield createDatabaseTables(db)
+  }))
+
+  try {
+    yield getDatabase()[type](cb)
+  } catch (error) {
+    console.error(error.stack)
+  }
+
+  if (closeAfter) {
+    pgPromise.end()
+  }
 }
 
 let connection

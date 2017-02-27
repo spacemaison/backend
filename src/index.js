@@ -1,13 +1,17 @@
 import { createApp } from './app'
-import { SERVER_PORT } from './constants'
+import * as constants from './constants'
+import { runDatabaseTask, runDatabaseTransaction } from './db'
 import * as routes from './routes/index'
 
 if (require.main === module) {
-  createApp().listen(SERVER_PORT)
+  createApp().listen(constants.SERVER_PORT)
   console.log('\n\t Space Watch Backend started...')
 }
 
 export {
+  constants,
   createApp,
+  runDatabaseTask,
+  runDatabaseTransaction,
   routes
 }
