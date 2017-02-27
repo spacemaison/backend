@@ -34,6 +34,7 @@ export const LAUNCH_STORY_SCHEMA = `
   missions integer array,
   status text,
   location integer,
+  "modified" timestamp default current_timestamp,
   pads integer array,
   rocket integer,
   "windowStart" timestamp,
@@ -97,8 +98,7 @@ export const LAUNCH_ROCKET_SCHEMA = `
   "family" integer,
   "wikiURL" text,
   "infoURLs" text array,
-  "imageURL" text,
-  "imageSizes" integer array
+  "image" image
 `
 
 export const LAUNCH_ROCKET_FAMILY_TABLE_NAME = 'launch_rocket_families'
@@ -110,11 +110,13 @@ export const LAUNCH_ROCKET_FAMILY_SCHEMA = `
 
 export const MEDIA_STORY_TABLE_NAME = 'media_stories'
 export const MEDIA_STORY_SCHEMA = `
-  "date" timestamp unique default current_timestamp,
+  "id" serial primary key,
+  "date" timestamp default current_timestamp,
   "description" text,
   "image" image,
   "title" text,
-  "url" text primary key
+  "type" text,
+  "url" text
 `
 
 export const GALLERY_ITEM_TABLE_NAME = 'gallery_items'

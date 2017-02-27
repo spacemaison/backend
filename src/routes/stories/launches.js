@@ -1,6 +1,6 @@
 import { models } from 'space-maison-shared'
 
-const { Launches } = models
+const { Image, Launches } = models
 const {
   LaunchAgency,
   LaunchStory,
@@ -53,14 +53,16 @@ export function * getLaunchRocket (connection, rocketId) {
       name,
       "wikiURL",
       "infoURLs",
-      "imageURL",
-      "imageSizes"
+      (image).urls,
+      (image).descriptions,
+      (image).sizes
     from launch_rockets
     where id = ${rocketId}
   `)
 
   return new LaunchRocket({
     __proto__: rocket,
+    image: new Image({ __proto__: rocket }),
     family: yield getLaunchRocketFamily(connection, rocket.family)
   })
 }

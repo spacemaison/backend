@@ -12,9 +12,13 @@ export function * getMedia (connection) {
       (image).urls,
       (image).sizes
     from
-      media_stories
+      media_stories,
+      selected_stories
+    where
+      selected_stories.type = 'media' and
+      selected_stories.id = cast (featured_stories.id as text)
     order by
-      media_stories.date DESC limit 25
+      media_stories.id DESC limit 25
   `)
 
   return stories.map(story => new MediaStory({
