@@ -24,7 +24,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-util": "^3.0.7",
     "pg-promise": "^5.5.7",
-    "space-maison-shared": "github:spacemaison/shared#4.0"
+    "space-maison-shared": "github:spacemaison/shared#5.0"
   },
   "devDependencies": {
     "babel-register": "^6.18.0",
